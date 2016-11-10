@@ -1,9 +1,9 @@
-package demoApp;
+package com.services;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-@Path("/status")
+@Path("status")
 public class StatusService {
 
 	  @GET
