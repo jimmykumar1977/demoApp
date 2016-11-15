@@ -56,5 +56,11 @@ public class RestServiceImpl implements RestService {
 		userBean.updateNote(id,note);
 		return Response.status(202).build();
 	}
+	
+	@Override
+	public Response deleteNote(String id) {
+		userBean.deleteNote(id);
+		return Response.ok().build();
+	}
 
 }

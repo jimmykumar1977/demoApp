@@ -1,6 +1,7 @@
 package com.rest.service;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -39,4 +40,9 @@ public interface RestService {
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  @Path("/note/{id}")
 	  public Response updateNote(@PathParam("id")  String uid,Note note);
+	  
+	  @DELETE
+	  @Produces(MediaType.TEXT_PLAIN)
+	  @Path("/note/{id}")
+	  public Response deleteNote(@PathParam("id")  String uid);
 }

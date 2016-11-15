@@ -57,4 +57,13 @@ public class UserBean {
 		Note n = (Note) entityManager.createEntityManager().find(Note.class, Long.parseLong(id));
 		return n ;
 	}
+	
+	public void deleteNote(String id) {
+		EntityManager em = entityManager.createEntityManager();
+		em.getTransaction().begin();
+		Note nn = em.find(Note.class, Long.parseLong(id));
+		em.remove(nn);
+		 em.getTransaction().commit();
+		
+	}
 }
