@@ -14,10 +14,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity(name = "note")
 @Table(name = "note")
 @XmlRootElement
+@XmlSeeAlso(User.class)
+@XmlType(propOrder = {"nid","title","note","user"})
 public class Note {
 
 	@Id
@@ -72,7 +77,7 @@ public class Note {
 		this.title = title;
 	}
 
-	@XmlElement
+	@XmlTransient
 	public Date getCreated() {
 		return created;
 	}
@@ -81,7 +86,7 @@ public class Note {
 		this.created = created;
 	}
 
-	@XmlElement
+	@XmlTransient
 	public Date getUpdated() {
 		return updated;
 	}

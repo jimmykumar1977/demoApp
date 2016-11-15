@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -14,13 +15,19 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
 
 @Entity(name = "user")
 @Table(name = "user")
 @XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
-public class User {
+@XmlType(propOrder = {"id","email","password"})
+public class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private long id;
@@ -36,7 +43,7 @@ public class User {
 	private Date created;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "updated")
+	@Column(name = "updated" )
 	private Date updated;
 	
 	
@@ -72,7 +79,7 @@ public class User {
 		this.password = password;
 	}
 
-	@XmlElement
+	@XmlTransient
 	public Date getCreated() {
 		return created;
 	}
@@ -81,7 +88,7 @@ public class User {
 		this.created = created;
 	}
 
-	@XmlElement
+	@XmlTransient
 	public Date getUpdated() {
 		return updated;
 	}
