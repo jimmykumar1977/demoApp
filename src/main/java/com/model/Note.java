@@ -44,6 +44,12 @@ public class Note {
 	@Column(name = "updated")
 	private Date updated;
 	
+	@Override
+	public String toString() {
+		return "Note [nid=" + nid + ", note=" + note + ", title=" + title + ", created=" + created + ", updated="
+				+ updated + ", user=" + user.getEmail() + "]";
+	}
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "usrid", referencedColumnName = "id")
 	private User user;

@@ -40,4 +40,9 @@ public class RestServiceImpl implements RestService {
 		return userBean.getUserNote(id);
 	}
 
+	@Override
+	public void createNote(Note note) {
+		System.out.println("Note::::::::::::::::: " + note);
+	}
+
 }
