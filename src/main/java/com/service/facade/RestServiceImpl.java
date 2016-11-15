@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
+import com.model.Note;
 import com.model.User;
 import com.rest.service.RestService;
 import com.services.UserBean;
@@ -24,6 +25,12 @@ public class RestServiceImpl implements RestService {
 	public User getUser(String id) {
 		User user = userBean.getUser(id);
 		return user;
+	}
+
+	@Override
+	public Note getNote(String id) {
+		Note n = userBean.getNote(id);
+		return n;
 	}
 
 }

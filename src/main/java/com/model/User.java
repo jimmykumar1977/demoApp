@@ -1,17 +1,19 @@
 package com.model;
 
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 @Entity(name = "user")
@@ -36,6 +38,12 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "updated")
 	private Date updated;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private Collection<Note> notes;
+	
+	
 
 	@XmlElement
 	public long getId() {
@@ -80,6 +88,15 @@ public class User {
 
 	public void setUpdated(Date updated) {
 		this.updated = updated;
+	}
+	
+	@XmlTransient
+	public Collection<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(Collection<Note> notes) {
+		this.notes = notes;
 	}
 
 }
