@@ -22,6 +22,7 @@ public class UserBean {
 	
 	public User getUser(String id) {
 		User t = (User) entityManager.createEntityManager().find(User.class, Long.parseLong(id));
+		System.out.println("***************** "+t);
 		return t;
 	}
 	

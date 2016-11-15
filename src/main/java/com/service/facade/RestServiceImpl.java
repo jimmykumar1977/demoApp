@@ -10,6 +10,7 @@ import javax.persistence.PersistenceUnit;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 
+import com.data.util.RestUtil;
 import com.model.Note;
 import com.model.User;
 import com.rest.service.RestService;
@@ -28,18 +29,27 @@ public class RestServiceImpl implements RestService {
 	@Override
 	public Response getUser(String id) {
 		User user = userBean.getUser(id);
+		if (user == null){
+			return RestUtil.create404Response(User.class, id);
+		}
 		return Response.ok(user).build();
 	}
 
 	@Override
 	public Response getNote(String id) {
 		Note n = userBean.getNote(id);
+		if (n == null){
+			return RestUtil.create404Response(Note.class, id);
+		}
 		return Response.ok(n).build();
 	}
 
 	@Override
 	public Response getUserNotes(String id) {
 		List<Note> ln = userBean.getUserNote(id); 
+		if (ln == null || ln.isEmpty()){
+			return RestUtil.create404Response("User notes", id);
+		}
 		GenericEntity<List<Note>> lst = new GenericEntity<List<Note>>(ln) 
 		{        };
 		return Response.ok(lst).build();
