@@ -7,6 +7,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.Response;
 
 import com.model.Note;
 import com.model.User;
@@ -24,25 +26,35 @@ public class RestServiceImpl implements RestService {
 	protected EntityManagerFactory entityManager;
 
 	@Override
-	public User getUser(String id) {
+	public Response getUser(String id) {
 		User user = userBean.getUser(id);
-		return user;
+		return Response.ok(user).build();
 	}
 
 	@Override
-	public Note getNote(String id) {
+	public Response getNote(String id) {
 		Note n = userBean.getNote(id);
-		return n;
+		return Response.ok(n).build();
 	}
 
 	@Override
-	public List<Note> getUserNotes(String id) {
-		return userBean.getUserNote(id);
+	public Response getUserNotes(String id) {
+		List<Note> ln = userBean.getUserNote(id); 
+		GenericEntity<List<Note>> lst = new GenericEntity<List<Note>>(ln) 
+		{        };
+		return Response.ok(lst).build();
 	}
 
 	@Override
-	public void createNote(Note note) {
-		System.out.println("Note::::::::::::::::: " + note);
+	public Response createNote(String uid,Note note) {
+		userBean.createNote(uid,note);
+		return Response.status(201).build();
+	}
+
+	@Override
+	public Response updateNote(String id,Note note) {
+		userBean.updateNote(id,note);
+		return Response.status(202).build();
 	}
 
 }

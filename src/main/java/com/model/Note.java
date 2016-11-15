@@ -38,18 +38,12 @@ public class Note {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created")
-	private Date created;
+	private Date created = new Date();
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "updated")
 	private Date updated;
 	
-	@Override
-	public String toString() {
-		return "Note [nid=" + nid + ", note=" + note + ", title=" + title + ", created=" + created + ", updated="
-				+ updated + ", user=" + user.getEmail() + "]";
-	}
-
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "usrid", referencedColumnName = "id")
 	private User user;
@@ -101,7 +95,7 @@ public class Note {
 		this.updated = updated;
 	}
 	
-	@XmlElement
+	@XmlElement(required = true)
 	public User getUser() {
 		return user;
 	}

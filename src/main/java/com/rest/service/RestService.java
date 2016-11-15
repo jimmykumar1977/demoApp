@@ -1,16 +1,16 @@
 package com.rest.service;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.model.Note;
-import com.model.User;
 
 @Path("/rest")
 public interface RestService {
@@ -18,20 +18,25 @@ public interface RestService {
 	  @GET
 	  @Produces("application/json")
 	  @Path("/user/{id}")
-	  public User getUser(@PathParam("id") String id);
+	  public Response getUser(@PathParam("id") String id);
 	  
 	  @GET
 	  @Produces("application/json")
 	  @Path("/user/{id}/note")
-	  public List<Note> getUserNotes(@PathParam("id") String id);
+	  public Response getUserNotes(@PathParam("id") String id);
 	  
 	  @GET
 	  @Produces("application/json")
 	  @Path("/note/{id}")
-	  public Note getNote(@PathParam("id") String id);
+	  public Response getNote(@PathParam("id") String id);
 	  
 	  @POST
-	  @Consumes("application/json")
-	  @Path("/note/")
-	  public void createNote(Note note);
+	  @Consumes(MediaType.APPLICATION_JSON)
+	  @Path("/user/{uid}/note")
+	  public Response createNote(@PathParam("uid")  String uid,Note note);
+	  
+	  @PUT
+	  @Consumes(MediaType.APPLICATION_JSON)
+	  @Path("/note/{id}")
+	  public Response updateNote(@PathParam("id")  String uid,Note note);
 }
