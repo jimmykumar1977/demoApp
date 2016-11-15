@@ -1,5 +1,7 @@
 package com.rest.service;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -15,6 +17,11 @@ public interface RestService {
 	  @Produces("application/json")
 	  @Path("/user/{id}")
 	  public User getUser(@PathParam("id") String id);
+	  
+	  @GET
+	  @Produces("application/json")
+	  @Path("/user/{id}/note")
+	  public List<Note> getUserNotes(@PathParam("id") String id);
 	  
 	  @GET
 	  @Produces("application/json")

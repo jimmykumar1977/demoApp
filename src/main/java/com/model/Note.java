@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @Entity(name = "note")
 @Table(name = "note")
-@XmlRootElement
+@XmlRootElement(name="Notes")
 @XmlSeeAlso(User.class)
 @XmlType(propOrder = {"nid","title","note","user"})
 public class Note {

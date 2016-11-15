@@ -1,5 +1,7 @@
 package com.service.facade;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -31,6 +33,11 @@ public class RestServiceImpl implements RestService {
 	public Note getNote(String id) {
 		Note n = userBean.getNote(id);
 		return n;
+	}
+
+	@Override
+	public List<Note> getUserNotes(String id) {
+		return userBean.getUserNote(id);
 	}
 
 }
