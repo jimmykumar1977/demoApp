@@ -12,8 +12,7 @@ import com.model.test;
 @Stateless
 @LocalBean
 public class StatusServiceImpl implements StatusService {
-
-	//@PersistenceContext(unitName="demojpa")
+	
 	@PersistenceUnit(unitName="demojpa")
 	protected EntityManagerFactory entityManager;
 	
